@@ -89,16 +89,15 @@ WSGI_APPLICATION = 'second_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydatabase',
-        'USER': 'tophia',
-        'PASSWORD': 'vkvkdl23',
+        'USER': 'root',
+        'PASSWORD': '@vkvkdl23',
         'HOST': 'db',
         'PORT': '3306',
     }
 }
+
 
 
 # Password validation

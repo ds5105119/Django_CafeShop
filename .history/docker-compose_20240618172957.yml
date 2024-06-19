@@ -8,10 +8,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: vkvkdl23
       MYSQL_DATABASE: mydatabase
-      MYSQL_USER: tophia
+      MYSQL_USER: root
       MYSQL_PASSWORD: vkvkdl23
     ports:
-      - "3306:3306"  # 호스트의 3307 포트를 컨테이너의 3306 포트로 매핑
+      - "3307:3306"  # 호스트의 3307 포트를 컨테이너의 3306 포트로 매핑
 
   web:
     build: .
