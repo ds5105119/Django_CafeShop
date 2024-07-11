@@ -25,5 +25,5 @@ services:
     environment:
       - DB_HOST=db
       - DB_NAME=mydatabase
-      - DB_USER=root
-      - DB_PASSWORD=vkvkdl23
+      - DB_USER=user
+      - DB_PASSWORD=user_password

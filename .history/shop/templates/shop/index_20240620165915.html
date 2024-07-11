@@ -13,7 +13,7 @@
         {% load thumbnail %}
         <style>
             /* 기본 스타일 설정 */
-            body {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -98,6 +98,35 @@ a.button:hover {
 .weekly_slide h2 {
     margin-bottom: 30px;
 }
+/* 슬라이더 아이템 스타일 설정 */
+#slider-div .slide img,
+#weekly-slider .slide_item ul li img,
+#new-arrival-slider .new_arrival_list img {
+    width: 100%;
+    height: auto;
+}
+
+.slide_item ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff; /* 배경색 설정 */
+}
+
+.new_arrival_list div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff; /* 배경색 설정 */
+}
 
 .slide_item {
     display: flex; /* 이미지들을 가로로 정렬하기 위해 flexbox 사용 */
@@ -119,6 +148,7 @@ a.button:hover {
 .slide_item img:hover {
     transform: scale(1.05); /* 호버 시 이미지 확대 */
 }
+
 
 /* 신규 입고 스타일 설정 */
 .new_arrival {
@@ -168,7 +198,6 @@ a.button:hover {
     }
 }
 
-
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
@@ -206,7 +235,6 @@ a.button:hover {
                 </div>
             </div>
         </div>
-        
         
         
 

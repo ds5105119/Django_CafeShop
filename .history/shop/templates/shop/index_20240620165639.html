@@ -13,7 +13,7 @@
         {% load thumbnail %}
         <style>
             /* 기본 스타일 설정 */
-            body {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -120,6 +120,7 @@ a.button:hover {
     transform: scale(1.05); /* 호버 시 이미지 확대 */
 }
 
+
 /* 신규 입고 스타일 설정 */
 .new_arrival {
     background-color: #fff;
@@ -168,7 +169,6 @@ a.button:hover {
     }
 }
 
-
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
@@ -194,7 +194,7 @@ a.button:hover {
                             <li>
                                 <a href="{% url 'shop:product_detail' product.pk %}">
                                     {% thumbnail product.image "200x200" crop="center" as im %}
-                                        <div><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ product.name }}"></div>
+                                    <div><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ product.name }}"></div>
                                     {% endthumbnail %}
                                     <p>{{ product.name }}</p>
                                     <p>조회수: {{ product.hit }}</p>
@@ -206,7 +206,6 @@ a.button:hover {
                 </div>
             </div>
         </div>
-        
         
         
 
@@ -232,10 +231,7 @@ a.button:hover {
             autoplay: true,
             autoplaySpeed: 3000,
             dots: true,
-            arrows: true,
-            adaptiveHeight: true, // 슬라이더 높이를 자동으로 조정
-            fade: true, // 슬라이드 전환 효과를 페이드로 설정
-            cssEase: 'linear' // CSS 전환 효과 설정
+            arrows: true
         });
 
         $('#weekly-slider .slide_item ul').slick({
@@ -246,7 +242,6 @@ a.button:hover {
             autoplaySpeed: 3000,
             dots: true,
             arrows: true,
-            adaptiveHeight: true,
             responsive: [
                 {
                     breakpoint: 768,
@@ -265,7 +260,6 @@ a.button:hover {
             autoplaySpeed: 3000,
             dots: true,
             arrows: true,
-            adaptiveHeight: true,
             responsive: [
                 {
                     breakpoint: 768,
@@ -277,7 +271,6 @@ a.button:hover {
         });
     });
 </script>
-
 
 
 {% endblock content %}

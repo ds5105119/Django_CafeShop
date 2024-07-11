@@ -13,7 +13,7 @@
         {% load thumbnail %}
         <style>
             /* 기본 스타일 설정 */
-            body {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -120,6 +120,7 @@ a.button:hover {
     transform: scale(1.05); /* 호버 시 이미지 확대 */
 }
 
+
 /* 신규 입고 스타일 설정 */
 .new_arrival {
     background-color: #fff;
@@ -130,7 +131,16 @@ a.button:hover {
 .new_arrival h2 {
     margin-bottom: 30px;
 }
-
+.new_arrival_list div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff; /* 배경색 설정 */
+}
 .new_arrival_list {
     display: flex;
     justify-content: center;
@@ -167,7 +177,6 @@ a.button:hover {
         align-items: center;
     }
 }
-
 
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
@@ -206,7 +215,6 @@ a.button:hover {
                 </div>
             </div>
         </div>
-        
         
         
 

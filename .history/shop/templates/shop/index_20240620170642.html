@@ -192,7 +192,7 @@ a.button:hover {
                         {% for product in products %}
                         {% if product.hit >= 5 %}
                             <li>
-                                <a href="{% url 'shop:product_detail' product.pk %}">
+
                                     {% thumbnail product.image "200x200" crop="center" as im %}
                                         <div><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ product.name }}"></div>
                                     {% endthumbnail %}

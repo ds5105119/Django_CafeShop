@@ -1,4 +1,5 @@
 Django==2.0.3
 pymysql
-sorl-thumbnail
 django-allauth
+sorl-thumbnail
+Pillow

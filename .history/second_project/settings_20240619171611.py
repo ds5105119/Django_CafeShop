@@ -94,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydatabase',
         'USER': 'tophia',
-        'PASSWORD': 'vkvkdl23',
+        'PASSWORD': 'qwe123',
         'HOST': 'db',
         'PORT': '3306',
     }

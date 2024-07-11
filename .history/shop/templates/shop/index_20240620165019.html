@@ -13,7 +13,7 @@
         {% load thumbnail %}
         <style>
             /* 기본 스타일 설정 */
-            body {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -120,6 +120,7 @@ a.button:hover {
     transform: scale(1.05); /* 호버 시 이미지 확대 */
 }
 
+
 /* 신규 입고 스타일 설정 */
 .new_arrival {
     background-color: #fff;
@@ -168,13 +169,13 @@ a.button:hover {
     }
 }
 
-
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
+        <script src="{% static 'shop/top_slide_controller.js' %}" type="text/javascript"></script>
+        <script src="{% static 'shop/weekly_slide.js' %}" type="text/javascript"></script>
 
         <!-- Page Header -->
         <div id="home" class="big-bg">
@@ -182,6 +183,15 @@ a.button:hover {
                 <h2 class="page-title">We'll Make Your Day</h2>
                 <p>멋진 카페에서 힐링 시간을 가지세요. 첨가물을 넣지 않은 재료로 건강한 음식을 만듭니다.</p>
             </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="slider-div" class="slide">
+            <div><img src="{% static 'shop/images/1.jpg' %}" alt="Slide 1"></div>
+            <div><img src="{% static 'shop/images/2.jpg' %}" alt="Slide 2"></div>
+            <div><img src="{% static 'shop/images/3.jpg' %}" alt="Slide 3"></div>
+            <div><img src="{% static 'shop/images/4.jpg' %}" alt="Slide 4"></div>
+            <div><img src="{% static 'shop/images/5.jpg' %}" alt="Slide 5"></div>
         </div>
 
         <div id="weekly-slider" class="weekly_slide">
@@ -193,21 +203,20 @@ a.button:hover {
                         {% if product.hit >= 5 %}
                             <li>
                                 <a href="{% url 'shop:product_detail' product.pk %}">
-                                    {% thumbnail product.image "200x200" crop="center" as im %}
-                                        <div><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ product.name }}"></div>
+                                    {% thumbnail product.image "370x370" crop="center" as im %}
+                                        <img src="{{ im.url }}" alt="{{ product.name }}" width="{{ im.width }}" height="{{ im.height }}">
                                     {% endthumbnail %}
                                     <p>{{ product.name }}</p>
                                     <p>조회수: {{ product.hit }}</p>
                                 </a>
                             </li>
                         {% endif %}
-                        {% endfor %}
+                    {% endfor %}
+                    
                     </ul>
                 </div>
             </div>
         </div>
-        
-        
         
 
         <div id="new-arrival-slider" class="new_arrival">
@@ -232,10 +241,7 @@ a.button:hover {
             autoplay: true,
             autoplaySpeed: 3000,
             dots: true,
-            arrows: true,
-            adaptiveHeight: true, // 슬라이더 높이를 자동으로 조정
-            fade: true, // 슬라이드 전환 효과를 페이드로 설정
-            cssEase: 'linear' // CSS 전환 효과 설정
+            arrows: true
         });
 
         $('#weekly-slider .slide_item ul').slick({
@@ -246,7 +252,6 @@ a.button:hover {
             autoplaySpeed: 3000,
             dots: true,
             arrows: true,
-            adaptiveHeight: true,
             responsive: [
                 {
                     breakpoint: 768,
@@ -265,7 +270,6 @@ a.button:hover {
             autoplaySpeed: 3000,
             dots: true,
             arrows: true,
-            adaptiveHeight: true,
             responsive: [
                 {
                     breakpoint: 768,
@@ -277,7 +281,5 @@ a.button:hover {
         });
     });
 </script>
-
-
 
 {% endblock content %}
