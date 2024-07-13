@@ -1,11 +1,4 @@
-# Dockerfile
-
-# Use an official Python runtime as a parent image
-FROM python:3.8-slim
-
-# Set environment variables
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
+FROM python:3.12-slim
 
 # Set the working directory in the container
 WORKDIR /code
