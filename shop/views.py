@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic.base import TemplateView
+from django.urls import reverse  # Add this import
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
-from .models import Product, Post, Point, Order, Category, Cart
+from .models import Product, Order, Category, Cart
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import OrderForm, ProductForm
-# Create your views here.
 
 
 
@@ -18,34 +17,6 @@ def index(request):
 
     return render(request, 'shop/index.html', context)
 
-
-
-def profile(request, pk):
-    user = User.objects.get(pk=pk)
-    categories = Category.objects.all()
-    return render(request, 'shop/profile.html', {'categories': categories})
-
-
-def notice(request):
-    post_list = Post.objects.all()
-    categories = Category.objects.all()
-    paginator = Paginator(post_list, 10)
-    page = request.GET.get('page')
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        posts = paginator.page(1)
-    except EmptyPage:
-        posts = paginator.page(paginator.num_pages)
-    context = {'posts': posts, 'categories': categories}
-    return render(request, 'shop/notice.html', context)
-
-
-def notice_detail(request, pk):
-    categories = Category.objects.all()
-    post = Post.objects.get(pk=pk)
-    context = {"post": post, "categories":  categories}
-    return render(request, 'shop/notice_detail.html', context)
 
 
 
@@ -80,24 +51,6 @@ def show_category(request, category_id):
         products = paginator.page(paginator.num_pages)
     context = {'lank_products': lank_products, 'products': products, 'category': category, 'categories': categories}
     return render(request, 'shop/category.html', context)
-
-
-@login_required
-def register_product(request):
-    categories = Category.objects.all()
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save(commit=False)
-            product.owner = request.user  # Assuming you have an owner field in your Product model
-            product.save()
-            messages.success(request, 'Product registered successfully!')
-            return redirect('shop:index')
-    else:
-        form = ProductForm()
-    
-    context = {'form': form, 'categories': categories}
-    return render(request, 'shop/register_product.html', context)
 
 def product_detail(request, pk):
     categories = Category.objects.all()
@@ -145,6 +98,7 @@ def delete_cart(request, pk):
             cart.delete()
             return redirect('shop:cart', user.pk)
 
+
 @login_required
 def cart_or_buy(request, pk):
     quantity = int(request.POST.get('quantity'))
@@ -155,15 +109,15 @@ def cart_or_buy(request, pk):
     cart = Cart.objects.filter(user=user)
     if request.method == 'POST':
         if 'add_cart' in request.POST:
-            for i in cart :
+            for i in cart:
                 if i.products == product:
                     product = Product.objects.filter(pk=pk)
                     Cart.objects.filter(user=user, products__in=product).update(quantity=F('quantity') + quantity)
-                    messages.success(request,'장바구니 등록 완료')
+                    messages.success(request, 'Added to cart successfully.')
                     return redirect('shop:cart', user.pk)
 
             Cart.objects.create(user=user, products=product, quantity=quantity)
-            messages.success(request, '장바구니 등록 완료')
+            messages.success(request, 'Added to cart successfully.')
             return redirect('shop:cart', user.pk)
 
         elif 'buy' in request.POST:
@@ -182,7 +136,7 @@ def cart_or_buy(request, pk):
             return render(request, 'shop/order_pay.html', {
                 'form': form,
                 'quantity': quantity,
-                'iamport_shop_id': 'iamport',  # FIXME: 가맹점코드
+                'iamport_shop_id': 'iamport',  # FIXME: Replace with actual merchant code
                 'user': user,
                 'product': product,
                 'categories': categories,
