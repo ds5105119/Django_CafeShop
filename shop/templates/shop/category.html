@@ -5,10 +5,10 @@
 {% endblock title %}
 
 {% block content %}
-    {% load static  %}
+    {% load static %}
     {% load thumbnail %}
-    <link rel="stylesheet" type='text/css' href="{% static 'shop/category1.css' %}">
-    <div class="content">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/category.css' %}">
+    <div class="left-wrap">
         <div class="product_title">
             <h2>
                 <span>{{ category }}</span>
@@ -90,5 +90,3 @@
         </div>
     </div>
 {% endblock content %}
-
-
